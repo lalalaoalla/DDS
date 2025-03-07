@@ -1,0 +1,44 @@
+
+        body {
+            font-family: sans-serif;
+        }
+        .nav-link {
+            color: white;
+        }
+        .nav-link:hover {
+            color: lightgreen;
+        }
+        .btn-green {
+            background-color: #00b050;
+            color: white;
+        }
+        .navbar-dark {
+            background-color: #fad384;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical; /* Разрешить изменение высоты */
+        }
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .nav-tabs .nav-item {
+            margin-right: 15px; /* Расстояние между вкладками */
+        }

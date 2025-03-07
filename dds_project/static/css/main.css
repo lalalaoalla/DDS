@@ -1,0 +1,38 @@
+body {
+    font-family: sans-serif;
+}
+.nav-link {
+    color: white;
+}
+.nav-link:hover {
+    color: lightgreen;
+}
+.btn-green {
+    background-color: #00b050;
+    color: white;
+}
+.event-header {
+    background-color: rgba(173, 216, 230, 0.8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.event-info {
+    margin-bottom: 20px;
+}
+.event-info i {
+    margin-right: 10px;
+}
+.search-bar {
+    margin-bottom: 20px;
+    margin-top: 20px; /* Или любое другое значение в пикселях, rem или em */
+}
+.search-bar input[type="text"], .search-bar select {
+    border: 1px solid #ced4da;
+    padding: 10px;
+    border-radius: 5px;
+}
+.navbar-dark {
+    background-color: #fad384;
+}
+
