@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My company - успешное создание</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <style>
+        .center-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Высота блока, чтобы он был по центру страницы */
+            flex-direction: column;
+        }
+        .success-message {
+            color: green; /* Зеленый цвет текста */
+            font-size: 1.5rem; /* Размер текста */
+            font-weight: 400; /* Меньшая жирность текста */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+    </style>
+    
+</head>
+<body>
+<!--Шапка-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">My company</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
+            <!--Ссылка на справочник-->
+            <a href="{% url 'guide' %}" class="btn btn-outline-info mr-2" role="button">Справочник</a>
+        </div>
+    </nav>
+
+    <!-- Центрированный блок с сообщением и кнопкой -->
+    <section class="center-block">
+        <h1 class="success-message">Запись успешно создана!</h1>
+        <!-- Ссылка на добавление записи -->
+        <a href="{% url 'create' %}" class="btn btn-outline-info" role="button">Создать новую запись</a>
+    </section>
+
+</body>
+</html>

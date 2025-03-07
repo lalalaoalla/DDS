@@ -112,7 +112,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Дата платежа</th>
+                    <th>Дата создания записи</th>
                     <th>Статус</th>
                     <th>Тип</th>
                     <th>Категория</th>
@@ -123,72 +123,23 @@
                 </tr>
             </thead>
             <tbody>
+                {% for data in dds_data %}
                 <tr>
-                    <td>01.01.2020</td>
-                    <td>Счет 1</td>
-                    <td>0005</td>
-                    <td>Продажа услуги 1</td>
-                    <td>1 190 812</td>
-                    <td>32 412</td>
-                    <td>1 157 900</td>
-                    <td class="btn-group"><a href="#" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
+                    
+                    <td>{{data.created_at}}</td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.typedds}}</td>
+                    <td>{{data.category}}</td>
+                    <td>{{data.subcategory}}</td>
+                    <td>{{data.summa}}</td>
+                    <td>{{data.comment}}</td>
+                    <td class="btn-group">
+                        <a href="{% url 'edit_dds' data.id %}" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
+                        <button class="btn btn-outline-danger ml-2">Удалить</button>
+                    </td>
+                   
                 </tr>
-                <tr>
-                    <td>02.02.2020</td>
-                    <td>Счет 2</td>
-                    <td>0007</td>
-                    <td>Продажа услуги 2</td>
-                    <td>475 246</td>
-                    <td>10 656</td>
-                    <td>464 500</td>
-                    <td class="btn-group"><a href="#" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
-                </tr>
-                <tr>
-                    <td>03.03.2020</td>
-                    <td>Счет 6</td>
-                    <td>С</td>
-                    <td>Продажа услуги 3</td>
-                    <td>2 043 422</td>
-                    <td>22 422</td>
-                    <td>2 029 000</td>
-                    <td class="btn-group"><a href="#" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
-                </tr>
-                <tr>
-                    <td>04.04.2020</td>
-                    <td>Счет 1</td>
-                    <td></td>
-                    <td>Проценты по вкладам и займам</td>
-                    <td>20 202</td>
-                    <td>202</td>
-                    <td>20 000</td>
-                    <td class="btn-group"><a href="#" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
-                </tr>
-                <tr>
-                    <td>05.05.2020</td>
-                    <td>Счет 2</td>
-                    <td></td>
-                    <td>Прочие доходы</td>
-                    <td>1 202 020</td>
-                    <td>2 020</td>
-                    <td>1 200 000</td>
-                    <td class="btn-group"><a href="#" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
-                </tr>
-                <tr>
-                    <td>06.06.2020</td>
-                    <td>Счет 12</td>
-                    <td></td>
-                    <td></td>
-                    <td>820 200</td>
-                    <td>20 200</td>
-                    <td>800 000</td>
-                    <td class="btn-group"><a href="#" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
