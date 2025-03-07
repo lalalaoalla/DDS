@@ -3,209 +3,197 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Билет тут</title>
+        <title>My company - движение денежных средств</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-            body {
-                font-family: sans-serif;
-            }
-            .nav-link {
-                color: white;
-            }
-            .nav-link:hover {
-                color: lightgreen;
-            }
-            .btn-green {
-                background-color: #00b050;
-                color: white;
-            }
-            .event-header {
-                background-color: #212529; /* Dark blue background */
-                color: white;
-                padding: 40px;
-                text-align: center;
-            }
-            .event-info {
-                margin-bottom: 20px;
-            }
-            .event-info i {
-                margin-right: 10px;
-            }
-            .search-bar {
-                margin-bottom: 20px;
-            }
-            .search-bar input[type="text"], .search-bar select {
-                border: 1px solid #ced4da;
-                padding: 10px;
-                border-radius: 5px;
-            }
-            /* Изменение цвета шапки */
-            .navbar-dark {
-                background-color: #fad384;
-            }
-        </style>
+        <link rel = "stylesheet" href = "css/main.css">
     </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Билет тут</a>
+    <!--Верхняя шапка-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">My company</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Концерты</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Спектакли</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Выставки</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Шоу</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Детям</a>
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
+            <!--Cсылка на добавление записи-->
+            <a href="create.html" class="btn btn-outline-info mr-2" role="button">Создать запись</a>
+            <!--Ссылка на справочник-->
+            <a href="guide.html" class="btn btn-outline-info mr-2" role="button">Справочник</a>
         </div>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </nav>
+<!--Секция организации под шапкой-->
+<section class="event-header">
+    <div class="event-header-content">
+      <h1>MY COMPANY</h1>
+      <div class="event-info">
+          <i class="fas fa-calendar-alt"></i> 2021-2025
+      </div>
+      <div class="event-info">
+          <i class="fas fa-map-marker-alt"></i> г. Москва ул. 3-я Строителей д. 25
+      </div>
+    </div>
+  </section>
 
-    <section class="event-header">
-        <div class="event-header-content">
-          <h1>FOR.ME.BAND</h1>
-          <div class="event-info">
-              <i class="fas fa-calendar-alt"></i> 22.03.2025
-          </div>
-          <div class="event-info">
-              <i class="fas fa-map-marker-alt"></i> Лофт Парк "Подземка"
-          </div>
-          <div class="event-buttons">
-            <button type="button" class="btn btn-green btn-lg">Купить</button>
-            <button type="button" class="btn btn-outline-light btn-lg">Подробнее</button>
-          </div>
-        </div>
-      </section>
 
-    <section class="search-bar container">
-        <div class="row">
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Поиск мероприятия...">
-            </div>
-            <div class="col-md-3">
-                <input type="date" class="form-control">
-            </div>
-            <div class="col-md-3">
-                <select class="form-control">
-                    <option value="">Площадка</option>
+<!--Секция с фильтром-->
+<section class="search-bar container">
+    <div class="row">
+        <div class="col-md-12">  <!-- Охватывает все фильтры -->
+            <div class="row">  <!-- Первый ряд фильтров -->
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="date_from">Дата (с):</label>
+                            <input type="date" class="form-control" id="date_from">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="date_to">Дата (по):</label>
+                            <input type="date" class="form-control" id="date_to">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="status">Статус:</label>
+                    <select class="form-control" id="status">
+                        <option value="">Все</option>
+                        <option value="active">Активен</option>
+                        <option value="inactive">Не активен</option>
                     </select>
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-green">Поиск</button>
-            </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="type">Тип:</label>
+                    <select class="form-control" id="type">
+                        <option value="">Все</option>
+                        <option value="concert">Концерт</option>
+                        <option value="theater">Театр</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="category">Категория:</label>
+                    <select class="form-control" id="category">
+                        <option value="">Все</option>
+                        <option value="music">Музыка</option>
+                        <option value="theater">Театр</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="subcategory">Подкатегория:</label>
+                    <select class="form-control" id="subcategory">
+                        <option value="">Все</option>
+                        <option value="rock">Рок</option>
+                        <option value="pop">Поп</option>
+                    </select>
+                </div>
+            </div>  <!-- Конец первого ряда -->
+            <div class="row mt-2 justify-content-center">  <!-- Второй ряд с кнопкой по центру -->
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-outline-info">Отфильтровать</button>
+                </div>
+            </div>  <!-- Конец второго ряда -->
         </div>
+    </div>
+</section>
+
+<!--Заголовок-->
+    <section class="text-center">
+        <h2>Данные о движении денежных средств</h2>
     </section>
-
-    <section>
-        <h2>Ожидаемые мероприятия</h2>
-        </section>
     
+<!--Секция таблицы-->
+<section class="container mt-4">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Дата платежа</th>
+                    <th>Статус</th>
+                    <th>Тип</th>
+                    <th>Категория</th>
+                    <th>Подкатегория</th>
+                    <th>Сумма</th>
+                    <th>Комментарий</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01.01.2020</td>
+                    <td>Счет 1</td>
+                    <td>0005</td>
+                    <td>Продажа услуги 1</td>
+                    <td>1 190 812</td>
+                    <td>32 412</td>
+                    <td>1 157 900</td>
+                    <td class="btn-group"><a href="edit.html" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
+                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
+                </tr>
+                <tr>
+                    <td>02.02.2020</td>
+                    <td>Счет 2</td>
+                    <td>0007</td>
+                    <td>Продажа услуги 2</td>
+                    <td>475 246</td>
+                    <td>10 656</td>
+                    <td>464 500</td>
+                    <td class="btn-group"><a href="edit.html" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
+                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
+                </tr>
+                <tr>
+                    <td>03.03.2020</td>
+                    <td>Счет 6</td>
+                    <td>С</td>
+                    <td>Продажа услуги 3</td>
+                    <td>2 043 422</td>
+                    <td>22 422</td>
+                    <td>2 029 000</td>
+                    <td class="btn-group"><a href="edit.html" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
+                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
+                </tr>
+                <tr>
+                    <td>04.04.2020</td>
+                    <td>Счет 1</td>
+                    <td></td>
+                    <td>Проценты по вкладам и займам</td>
+                    <td>20 202</td>
+                    <td>202</td>
+                    <td>20 000</td>
+                    <td class="btn-group"><a href="edit.html" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
+                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
+                </tr>
+                <tr>
+                    <td>05.05.2020</td>
+                    <td>Счет 2</td>
+                    <td></td>
+                    <td>Прочие доходы</td>
+                    <td>1 202 020</td>
+                    <td>2 020</td>
+                    <td>1 200 000</td>
+                    <td class="btn-group"><a href="edit.html" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
+                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
+                </tr>
+                <tr>
+                    <td>06.06.2020</td>
+                    <td>Счет 12</td>
+                    <td></td>
+                    <td></td>
+                    <td>820 200</td>
+                    <td>20 200</td>
+                    <td>800 000</td>
+                    <td class="btn-group"><a href="edit.html" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
+                        <button class="btn btn-outline-danger ml-2">Удалить</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
 
 
-
-        <section class="container mt-4">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Дата платежа</th>
-                            <th>Счет</th>
-                            <th>Квитанция</th>
-                            <th>Поступления</th>
-                            <th>Январь 20</th>
-                            <th>Февраль 20</th>
-                            <th>Март 20</th>
-                            <th>Апрель 20</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01.01.2020</td>
-                            <td>Счет 1</td>
-                            <td>0005</td>
-                            <td>Продажа услуги 1</td>
-                            <td>1 190 812</td>
-                            <td>32 412</td>
-                            <td>1 157 900</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>02.02.2020</td>
-                            <td>Счет 2</td>
-                            <td>0007</td>
-                            <td>Продажа услуги 2</td>
-                            <td>475 246</td>
-                            <td>10 656</td>
-                            <td>464 500</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>03.03.2020</td>
-                            <td>Счет 6</td>
-                            <td>С</td>
-                            <td>Продажа услуги 3</td>
-                            <td>2 043 422</td>
-                            <td>22 422</td>
-                            <td>2 029 000</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>04.04.2020</td>
-                            <td>Счет 1</td>
-                            <td></td>
-                            <td>Проценты по вкладам и займам</td>
-                            <td>20 202</td>
-                            <td>202</td>
-                            <td>20 000</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>05.05.2020</td>
-                            <td>Счет 2</td>
-                            <td></td>
-                            <td>Прочие доходы</td>
-                            <td>1 202 020</td>
-                            <td>2 020</td>
-                            <td>1 200 000</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>06.06.2020</td>
-                            <td>Счет 12</td>
-                            <td></td>
-                            <td></td>
-                            <td>820 200</td>
-                            <td>20 200</td>
-                            <td>800 000</td>
-                            <td>0</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    
-        <!-- ... (блок поиска) ... -->
-    
-        <!-- ... (блок "Ожидаемые мероприятия") ... -->
-
-    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
