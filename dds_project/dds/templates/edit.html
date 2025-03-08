@@ -34,7 +34,7 @@
                         <!-- Поле "Дата" -->
                         <div class="form-group">
                             <label for="id_created_at">Дата</label>
-                            <input type="date" class="form-control" id="id_created_at" name="created_at" value="{{ form.created_at.value|default:'' }}">
+                            <input type="date" class="form-control" id="id_created_at" name="created_at" value="{{ form.created_at.value|default:''|date:'Y-m-d' }}">
                         </div>
         
                         <!-- Поле "Статус" -->

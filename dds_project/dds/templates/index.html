@@ -23,10 +23,7 @@
             <!--Ссылка на справочник-->
             <a href="{% url 'guide' %}" class="btn btn-outline-info mr-2" role="button">Справочник</a>
         </div>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Поиск</button>
-        </form>
+
     </nav>
 <!--Секция организации под шапкой-->
 <section class="event-header">
@@ -43,61 +40,73 @@
 
 
 <!--Секция с фильтром-->
-<section class="search-bar container">
+<section class="search-bar container center">
     <div class="row">
-        <div class="col-md-12">  <!-- Охватывает все фильтры -->
-            <div class="row">  <!-- Первый ряд фильтров -->
-                <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="date_from">Дата (с):</label>
-                            <input type="date" class="form-control" id="date_from">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="date_to">Дата (по):</label>
-                            <input type="date" class="form-control" id="date_to">
+        <div class="col-md-12">
+        <form id="filter-form" method="get" action="">
+            
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="date_from">Дата (с):</label>
+                                <input type="date" class="form-control" id="date_from" name="date_from">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="date_to">Дата (по):</label>
+                                <input type="date" class="form-control" id="date_to" name="date_to">
+                            </div>
                         </div>
                     </div>
+                    
+                    <div class="col-md-2">
+                        <label for="status">Статус:</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="">Все</option>
+                            {% for status in status_data %}
+                            <option value="{{ status.name }}">{{ status.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="type">Тип:</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="">Все</option>
+                            {% for typedds in type_data %}
+                            <option value="{{ typedds.name }}">{{ typedds.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="category">Категория:</label>
+                        <select class="form-control" id="category" name="category">
+                            <option value="">Все</option>
+                            {% for category in category_data %}
+                            <option value="{{ category.name }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="subcategory">Подкатегория:</label>
+                        <select class="form-control" id="subcategory" name="subcategory">
+                            <option value="">Все</option>
+                            {% for subcategory in subcategory_data %}
+                            <option value="{{ subcategory.name }}">{{ subcategory.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <label for="status">Статус:</label>
-                    <select class="form-control" id="status">
-                        <option value="">Все</option>
-                        <option value="active">Активен</option>
-                        <option value="inactive">Не активен</option>
-                    </select>
+                <div class="row mt-2 justify-content-center">
+                    <h2 style="font-size: 1rem; color: #17A2C8;">Пожалуйста, выберите, какие данные хотите увидеть</n2>
                 </div>
-                <div class="col-md-2">
-                    <label for="type">Тип:</label>
-                    <select class="form-control" id="type">
-                        <option value="">Все</option>
-                        <option value="concert">Концерт</option>
-                        <option value="theater">Театр</option>
-                    </select>
+                <div class="row mt-2 justify-content-center">
+                    <div class="col-md-2">
+                        <button type="submit" id="filter-button" class="btn btn-outline-info">Отфильтровать</button>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <label for="category">Категория:</label>
-                    <select class="form-control" id="category">
-                        <option value="">Все</option>
-                        <option value="music">Музыка</option>
-                        <option value="theater">Театр</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="subcategory">Подкатегория:</label>
-                    <select class="form-control" id="subcategory">
-                        <option value="">Все</option>
-                        <option value="rock">Рок</option>
-                        <option value="pop">Поп</option>
-                    </select>
-                </div>
-            </div>  <!-- Конец первого ряда -->
-            <div class="row mt-2 justify-content-center">  <!-- Второй ряд с кнопкой по центру -->
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-outline-info">Отфильтровать</button>
-                </div>
-            </div>  <!-- Конец второго ряда -->
-        </div>
+            
+        </form>
+    </div>
     </div>
 </section>
 
@@ -109,46 +118,14 @@
 <!--Секция таблицы-->
 <section class="container mt-4">
     <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Дата создания записи</th>
-                    <th>Статус</th>
-                    <th>Тип</th>
-                    <th>Категория</th>
-                    <th>Подкатегория</th>
-                    <th>Сумма</th>
-                    <th>Комментарий</th>
-                    <th>Действия</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for data in dds_data %}
-                <tr>
-                    
-                    <td>{{data.created_at}}</td>
-                    <td>{{data.status}}</td>
-                    <td>{{data.typedds}}</td>
-                    <td>{{data.category}}</td>
-                    <td>{{data.subcategory}}</td>
-                    <td>{{data.summa}}</td>
-                    <td>{{data.comment}}</td>
-                    <td class="btn-group">
-                        <a href="{% url 'edit_dds' data.id %}" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                        <button class="btn btn-outline-danger ml-2">Удалить</button>
-                    </td>
-                   
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% include 'dds_table.html' %}
     </div>
 </section>
 
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/dds_table_filter.js'%}"> </script>
 </body>
 </html>

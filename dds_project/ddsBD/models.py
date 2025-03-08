@@ -34,7 +34,7 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        return '%s %s' % (self.name, self.typec)
+        return self.name
     
 #Модель подкатегорий
 class SubCategory(models.Model):
@@ -46,5 +46,5 @@ class SubCategory(models.Model):
         verbose_name_plural = 'Подкатегории'
 
     def __str__(self):
-        return '%s %s' % (self.name, self.category)
+        return self.name
     
