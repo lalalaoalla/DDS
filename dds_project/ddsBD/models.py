@@ -27,7 +27,7 @@ class Type(models.Model):
 #Модель категорий
 class Category(models.Model):
     name=models.CharField(max_length=128, unique=True, verbose_name="Название категории")
-    typec=models.ForeignKey(Type, on_delete=models.CASCADE, verbose_name="К какому типу привязана")
+    typedds=models.ForeignKey(Type, on_delete=models.CASCADE, verbose_name="К какому типу привязана")
 
     class Meta:
         verbose_name = 'Категория'
