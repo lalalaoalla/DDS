@@ -4,7 +4,6 @@ $(document).ready(function() {
         console.log("Форма отправлена");
         console.log("AJAX-запрос отправлен");
 
-
         // Отключаем кнопку, чтобы предотвратить множественные нажатия
         $('#filter-button').prop('disabled', true);
 
