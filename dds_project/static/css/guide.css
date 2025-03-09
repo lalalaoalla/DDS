@@ -32,9 +32,74 @@ th {
     background-color: #f2f2f2;
 }
 
+#statusTable {
+    table-layout: fixed;
+    width: 70%;
+}
+
+#statusTable th,
+#statusTable td {
+    text-align: left;
+}
+
+#statusTable th:first-child,
+#statusTable td:first-child {
+    width: 10%; /* ID */
+}
+
+#statusTable th:nth-child(2),
+#statusTable td:nth-child(2) {
+    width: 30%; /* Название */
+}
+
+#statusTable th:nth-child(3),
+#statusTable td:nth-child(3) {
+    width: 100%; /* Действия */
+}
+
+#statusTable td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*Для таблицы типов*/
+#typeTable {
+    table-layout: fixed;
+    width: 70%;
+}
+
+#typeTable th,
+#typeTable td {
+    text-align: left;
+}
+
+#typeTable th:first-child,
+#typeTable td:first-child {
+    width: 10%; /* ID */
+}
+
+#typeTable th:nth-child(2),
+#typeTable td:nth-child(2) {
+    width: 30%; /* Название */
+}
+
+#typeTable th:nth-child(3),
+#typeTable td:nth-child(3) {
+    width: 100%; /* Действия */
+}
+
+#typeTable td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .button-container {
+    
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; /* Равномерное распределение кнопок */
+    width: 100%; /* Занимает всю ширину ячейки */
 }
 
 .button-container button {
@@ -42,18 +107,26 @@ th {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    width: 100px; /* Фиксированная ширина кнопок */
+    
 }
 
 .edit-button {
-    background-color: #4CAF50; /* Green */
-    color: white;
-}
-
-.delete-button {
-    background-color: #f44336; /* Red */
-    color: white;
-}
-
+    border: 1px solid #209cee;
+    border-radius: 5px;
+    padding: 8px 16px;
+    background-color: #fff;
+    color: #209cee;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    height: 40px; /* Устанавливаем высоту кнопки */
+    line-height: 30px; /* Выравниваем текст по вертикали */
+  }
+  
+  .edit-button:hover {
+    background-color: #209cee;
+    color: #fff;
+  }
 .add-category-button {
     background-color: #008CBA; /* Blue */
     color: white;
@@ -66,4 +139,51 @@ th {
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
+    padding-bottom: 10px;
+}
+
+.add-status-button {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block; /* Чтобы кнопка была на новой строке */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding-bottom: 10px;
+}
+
+.add-type-button {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block; /* Чтобы кнопка была на новой строке */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding-bottom: 10px;
+}
+
+.add-subcategory-button {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block; /* Чтобы кнопка была на новой строке */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }

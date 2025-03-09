@@ -1,6 +1,5 @@
-<!--Файл с кодом таблицы-->
 {% load static %}
-
+<meta name="csrf-token" content="{{ csrf_token }}">
 
 <div id="dds-table">
     <table class="table">
@@ -18,7 +17,7 @@
         </thead>
         <tbody>
             {% for dds in dds_data %}
-            <tr>
+            <tr data-id="{{ dds.id }}">
                 <td>{{ dds.created_at }}</td>
                 <td>{{ dds.status.name }}</td>
                 <td>{{ dds.typedds.name }}</td>
@@ -28,7 +27,7 @@
                 <td>{{ dds.comment }}</td>
                 <td class="btn-group">
                     <a href="{% url 'edit_dds' dds.id %}" class="btn btn-outline-info mr-2" role="button">Редактировать</a>
-                    <button class="btn btn-outline-danger ml-2">Удалить</button>
+                    <button class="btn btn-outline-danger ml-2 delete-button">Удалить</button>
                 </td>
             </tr>
             {% endfor %}

@@ -22,44 +22,33 @@
             <a href="{% url 'create'%}" class="btn btn-outline-info mr-2" role="button">Создать запись</a>
         </div>
     </nav>
-
-    <h2 >Статус</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Название</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Активный</td>
-                <td>
-                    <div class="button-container">
-                        <button class="btn btn-outline-info">Редактировать</button>
-                        <button class="btn btn-outline-danger">Удалить</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Неактивный</td>
-                <td>
-                    <div class="button-container">
-                        <button class="btn btn-outline-info">Редактировать</button>
-                        <button class="btn btn-outline-danger">Удалить</button>
-                    </div>
-                </td>
-            </tr>
-             <!-- Добавьте сюда другие строки из вашей базы данных -->
-        </tbody>
-    </table>
-    <button class="add-category-button">Добавить новую категорию</button>
-
+<!--Таблица со статусами-->
+<h2>Статус</h2>
+<table id="statusTable" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in status_data %}
+        <tr data-status-id="{{ status.id }}">
+            <td>{{status.id}}</td>
+            <td class="status-name">{{status.name}}</td>
+            <td class="button-container">
+                <a href="#" class="btn btn-outline-info mr-2 edit-button" role="button">Редактировать</a>
+                <button class="btn btn-outline-danger ml-2 delete-button">Удалить</button>
+            </td>   
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button class="add-status-button">Добавить новый статус</button>
+<!--Таблица с типами-->
     <h2>Тип</h2>
-    <table>
+    <table id="typeTable" class="table table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
@@ -68,30 +57,131 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Товар</td>
-                <td>
-                    <div class="button-container">
-                        <button class="btn btn-outline-info">Редактировать</button>
-                        <button class="btn btn-outline-danger">Удалить</button>
-                    </div>
+            {% for typedds in type_data%}
+            <tr data-type-id="{{ typedds.id }}">
+                <td>{{typedds.id}}</td>
+                <td class="type-name">{{typedds.name}}</td>
+                <td class="button-container">
+                    <button class="btn btn-outline-info mr-2 edit-button">Редактировать</button>
+                    <button class="btn btn-outline-danger ml-2 delete-type-button">Удалить</button>
                 </td>
             </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    <button class="add-type-button">Добавить новый тип</button>
+<!--Таблица с категориями-->
+<h2>Категория</h2>
+    <table id="category-table-body">
+        <thead>
             <tr>
-                <td>2</td>
-                <td>Услуга</td>
-                <td>
-                    <div class="button-container">
-                        <button class="btn btn-outline-info">Редактировать</button>
-                        <button class="btn btn-outline-danger">Удалить</button>
-                    </div>
+                <th>ID</th>
+                <th>Название</th>
+                <th>К какому типу принадлежит</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in category_data %}
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            <meta name="csrf-token" content="{{ csrf_token }}">
+            <tr data-id="{{ category.id }}">
+                <td>{{ category.id }}</td>
+                <td class="name-column">{{ category.name }}</td>
+                <td class="type-column">{{ category.typedds }}</td>
+                <td class="button-container">
+                    <button class="btn btn-outline-info mr-2 edit-button">Редактировать</button>
+                    <button class="btn btn-outline-danger ml-2 delete-category-button">Удалить</button>
                 </td>
             </tr>
-            <!-- Добавьте сюда другие строки из вашей базы данных -->
+            {% endfor %}
         </tbody>
     </table>
     <button class="add-category-button">Добавить новую категорию</button>
+<!--Таблица с подкатегориями-->
+    <h2>Подкатегория</h2>
+    <table id="subcategory-table-body">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>К какой категории принадлежит</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subcategory in subcategory_data%}
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            <tr data-id="{{ subcategory.id }}">
+                <td>{{subcategory.id}}</td>
+                <td class="name-column">{{ subcategory.name }}</td>
+                <td class="category-column">{{ subcategory.category }}</td> 
+                <td class="button-container">
+                    <button class="btn btn-outline-info mr-2 edit-button">Редактировать</button>
+                    <button class="btn btn-outline-danger ml-2 delete-subcategory-button">Удалить</button>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    <button class="add-subcategory-button">Добавить новую подкатегорию</button>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/save/status_save.js'%}"></script>
+    <script src="{% static 'js/save/type_save.js'%}"></script>
+    <!--Передача параметров в файл js-->
+    <script>
+            const typeOptions = [
+                {% for type in type_data %}
+                { id: "{{ type.id }}", name: "{{ type.name }}" },
+                {% endfor %}
+            ];
+
+    </script>
+    <script src="{% static 'js/save/category_save.js'%}"></script>
+<!--Передача параметров категорий в файл js -->
+    <script>
+        // Передаем данные из Django в JavaScript
+        const categoryOptions = [
+            {% for category in category_data %}
+            { id: "{{ category.id }}", name: "{{ category.name }}" },
+            {% endfor %}
+        ];
+    </script>
+    <script src="{% static 'js/save/subcategory_save.js'%}"></script>
+
+    <!--Файлы редактирования-->
+    <script src="{% static 'js/edit/status_edit.js'%}"></script>
+    <script src="{% static 'js/edit/type_edit.js'%}"></script>
+
+    <script>
+        window.typeData = {
+            {% for type in type_data %}
+                {{ type.id }}: "{{ type.name }}"{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        };
+    </script>
+    <script src="{% static 'js/edit/category_edit.js'%}"></script>
+
+    <script>
+        window.categoryData = {
+            {% for category in category_data %}
+                {{ category.id }}: "{{ category.name }}"{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        };
+    </script>
+    <script src="{% static 'js/edit/subcategory_edit.js'%}"></script>
+
+    <script src="{% static 'js/delete/status_delete.js'%}"></script>
+
+    <script src="{% static 'js/delete/type_delete.js'%}"></script>
+    <script src="{% static 'js/delete/category_delete.js'%}"></script>
+    <script src="{% static 'js/delete/subcategory_delete.js'%}"></script>
+        
 </body>
 </html>

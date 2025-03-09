@@ -42,3 +42,9 @@
         .nav-tabs .nav-item {
             margin-right: 15px; /* Расстояние между вкладками */
         }
+
+        .is-invalid {
+            border-color: red;
+          }
+          
+          

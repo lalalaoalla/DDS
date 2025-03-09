@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My company - создание записи ДДС</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
     <link rel="stylesheet" href="{% static 'css/create.css' %}">
 </head>
 <body>
@@ -34,7 +35,8 @@
                         <!-- Поле "Дата" -->
                         <div class="form-group">
                             <label for="id_created_at">Дата</label>
-                            <input type="date" class="form-control" id="id_created_at" name="created_at" value="{{ form.created_at.value|default:'' }}">
+                            {{ form.created_at }}
+                            <!--<input type="date" class="form-control" id="id_created_at" name="created_at" value="{{ form.created_at.value|default:'' }}">-->
                         </div>
         
                         <!-- Поле "Статус" -->
@@ -71,7 +73,8 @@
                     <!-- Поле "Сумма" с кастомными стилями -->
                     <div class="form-group">
                         <label for="id_summa">Сумма</label>
-                        <input type="text" class="form-control" id="id_summa" name="summa" placeholder="5000" value="{{ form.summa.value|default:'' }}">
+                        <input type="text" class="form-control summa-input" id="id_summa" name="summa" placeholder="5000" value="{{ form.summa.value|default:'' }}">
+                        <span class="error-message" style="color: red; display: none;">Введите корректное значение, например 5000</span>
                     </div>
         
                     <!-- Кнопка "Создать запись" -->
@@ -89,5 +92,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/logic_choice/create_logic.js'%}"></script>
+    <script src ="{% static 'js/validate/validatoe.js' %}"></script>
 </body>
 </html>
