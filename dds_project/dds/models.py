@@ -23,3 +23,4 @@ class DDS(models.Model):
     class Meta:
         verbose_name = "Данные о движении денежных средств"
         verbose_name_plural = "Даннные о движениях денежных средств"
+
