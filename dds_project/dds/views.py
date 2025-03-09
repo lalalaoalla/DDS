@@ -1,13 +1,36 @@
-# для рендеринга
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
-#импорт моделей
 from .models import DDS 
 from ddsBD.models import *
-#импорт форм
 from .forms import DDSForm, DDSEditForm
+import datetime
+from django.views.decorators.http import require_POST
+import logging
 
+#обработка удаления
+@require_POST
+def delete_dds(request, id):
+    try:
+        dds = get_object_or_404(DDS, id=id)
+        dds.delete()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+    
+# Настройка логгера
+logger = logging.getLogger(__name__)
+#функции для получения категорий и подкатегорий для списка
+def get_categories(request):
+    typedds_id = request.GET.get('typedds_id')
+    categories = Category.objects.filter(typedds_id=typedds_id).values('id', 'name')
+    return JsonResponse(list(categories), safe=False)
 
+def get_subcategories(request):
+    category_id = request.GET.get('category_id')
+    subcategories = SubCategory.objects.filter(category_id=category_id).values('id', 'name')
+    return JsonResponse(list(subcategories), safe=False)
+
+#отображения страниц и некоторые действия№№№№№№№№№№№№№ 
 def index(request):
 
     #Получаем данные
@@ -51,36 +74,38 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-
+#страница создания записи ддс
 def create(request):
-
-    #получаем данные с БД
     status_data = Status.objects.all()
     type_data = Type.objects.all()
     category_data = Category.objects.all()
     subcategory_data = SubCategory.objects.all()
 
-
     if request.method == 'POST':
         form = DDSForm(request.POST)
         if form.is_valid():
-            form.save()  # Сохраняем запись в базу данных
-            return redirect('success_url')  # Перенаправляем на страницу успеха
+            # Доп валидация
+            created_at = form.cleaned_data['created_at']
+            if created_at > datetime.date.today():
+                form.add_error('created_at', "Дата не может быть в будущем")
+            else:
+                form.save()
+                return redirect('success_url')
     else:
-        form = DDSForm()
+        form = DDSForm(initial={'created_at': datetime.date.today()})
 
     context = {
-        'status_data' : status_data,
-        'type_data' : type_data,
-        'category_data' : category_data,
-        'subcategory_data' : subcategory_data,
+        'status_data': status_data,
+        'type_data': type_data,
+        'category_data': category_data,
+        'subcategory_data': subcategory_data,
         'form': form,
     }
-    return render(request,'create.html', context)
+    return render(request, 'create.html', context)
 
-
+#страница редактирования
 def edit_dds(request, id):
-    # Получаем объект записи по id
+    
     dds_entry = get_object_or_404(DDS, id=id)
 
     if request.method == 'POST':
@@ -88,7 +113,7 @@ def edit_dds(request, id):
         form = DDSEditForm(request.POST, instance=dds_entry)
         if form.is_valid():
             form.save()
-            return redirect('index')  # Перенаправляем на список записей
+            return redirect('index')  
     else:
         # Если запрос GET, отображаем форму с текущими данными
         form = DDSEditForm(instance=dds_entry)
@@ -97,7 +122,5 @@ def edit_dds(request, id):
 #Страница успеха
 def success_view(request):
     return render(request, 'success.html')
-
-
 
 
